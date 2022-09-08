@@ -1,0 +1,51 @@
+Terraform learnings
+
+
+
+Date: 7/7/22
+Task: creating a vpc
+##################################################################################
+Date: 15/7/22
+Task: creating an Ec2 instance
+##################################################################################
+Date: 19/7/22
+Task: modules
+##################################################################################
+Date: 25/7/22
+Task: saving the output file to a JSON file
+##################################################################################
+Date: 25/7/22
+Task: creating a statefile with S3 backend
+* created a repository in GIT and pushed the code
+##################################################################################
+Date: 25/7/22
+Task: provider and output.tf
+##################################################################################
+Date: 5/8/22
+Task: locals
+##################################################################################
+Date: 5/8/22
+Task: lookups
+##################################################################################
+Date: 16/8/22
+Task1: TF vars 
+Task2: terraform variables (count,string,number,bool,map&key)
+Task3: GIT merge
+Task4: For-each
+##################################################################################
+Date: 19/8/22
+Task1: IAM-policy
+Task2: Depends on
+##################################################################################
+Date: ......
+Task: Main root and child module creation
+##################################################################################
+"for each
+count
+variable types add"
+sensitve
+"secret manager" decode and encode
+
+git repository updation
+include new variables
+implement all learnings in module
