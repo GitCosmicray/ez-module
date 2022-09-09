@@ -3,41 +3,53 @@ resource "aws_iam_user" "Earth" {
   name  = var.user_names[count.index]
 }
 
-resource "aws_iam_role" "s3_iam_role" {
-  name = "s3_iam_role"
+resource "aws_iam_role_policy" "ec2_policy" {
+  name = "ec2_policy"
+  role = aws_iam_role.ec2_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_role" "ec2_role" {
+  name = "ec2_role"
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
         Action = "sts:AssumeRole"
         Effect = "Allow"
-        Sid = ""
+        Sid    = ""
         Principal = {
-          Service = "s3.amazonaws.com"
+          Service = "ec2.amazonaws.com"
         }
       },
     ]
   })
 }
 
-
-
-
-resource "aws_iam_policy" "s3-policy" {
-  name = "s3-policy"
-  #role   = "aws_iam_role.ec2_iam_role"
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" = [{
-      "Action"   = "s3:*",
-      "Effect"   = "Allow",
-      "Resource" = "*"
-    }],
-  })
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2_profile"
+  role = aws_iam_role.ec2_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "s3-role-attach" {
-  role       = aws_iam_role.s3_iam_role.name
-  policy_arn = aws_iam_policy.s3-policy.arn
-}
 
+resource "aws_instance" "IAM-ec2" {
+  ami           = "ami-08d4ac5b634553e16"
+  instance_type = "t2.micro"
+  iam_instance_profile = "${aws_iam_instance_profile.ec2_profile.name}"
+  tags = {
+    Name = "IAM_ec2TEST"
+  }
+}
