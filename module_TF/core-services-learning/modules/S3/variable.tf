@@ -6,10 +6,6 @@ variable "tags" {
     }
 }
 
-variable "instance_type_2" {
-  type = string
-  default = "t2.micro"
-}
 
 
 variable "s3_configuration" {

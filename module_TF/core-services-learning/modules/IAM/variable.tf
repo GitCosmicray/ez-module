@@ -3,3 +3,8 @@ variable "user_names" {
   type        = list(string)
   default     = ["Ironclad", "Marcus", "Helga"]
 }
+
+variable "iam_configuration" {
+  type = any
+  description = "this is configuration for iam"
+}
