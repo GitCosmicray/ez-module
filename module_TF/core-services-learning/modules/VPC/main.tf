@@ -1,4 +1,13 @@
-resource "aws_vpc" "main" {
+# terraform {
+#    backend "s3" {
+#     bucket = "vecna-buckcet1222"
+#     key    = "terraform/terraform.tfstate"
+#     region = "us-east-1"
+# }
+
+# }
+
+resource "aws_vpc" "VPC_useast-1" {
   cidr_block       = var.cidr_block 
   instance_tenancy = "default"
   tags = {
@@ -6,8 +15,8 @@ resource "aws_vpc" "main" {
  }
 }
 
-resource "aws_vpc" "for_each" {
-    for_each = var.vpcs
+resource "aws_vpc" "vpc_usE1_testing" {
+    for_each =lookup(var.vpc_configuration, "qwerty")
     cidr_block = each.value
     tags = {
         "Name" = each.key

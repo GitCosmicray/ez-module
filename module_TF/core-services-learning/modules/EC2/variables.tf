@@ -51,3 +51,9 @@ variable "ec2_configuration" {
   description = "this is configuration for ec2 in tfvars"
   
   }
+
+variable "s3_configuration" {
+  type = any
+  description = "this is configuration for s3"
+  }
+

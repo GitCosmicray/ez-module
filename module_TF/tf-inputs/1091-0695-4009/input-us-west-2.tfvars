@@ -1,6 +1,8 @@
-vpc_configuration = {
-    "cidr_block_A" = "10.3.0.0/16"
+
+iam_configuration = {
+    "Name"= "production-instance-role"
 }
+
 
 ec2_configuration = {
     "key_name" = "cs_prod_key"
@@ -9,10 +11,19 @@ ec2_configuration = {
 
 s3_configuration = {
     "tags" =  {
-      Name = "tfvars_bucket"
+      Name = "tfvars_testing"
       Environment = "dev"
       region = "useast1"
       managed = "k8s"
     }
-    "instance_type_2" = "t3.micro"
+    
 }
+
+vpc_configuration = {
+    "cidr_block_A" = "172.16.0.0/16"
+qwerty = {
+    "cosmic" = "10.0.0.0/16",   
+    "clone" = "10.1.0.0/16"
+  }
+}
+
