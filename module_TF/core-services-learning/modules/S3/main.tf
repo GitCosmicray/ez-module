@@ -16,7 +16,7 @@ output "bucket_id" {
 }
 
 resource "aws_s3_bucket" "S3-UE1-dependsonbucket" {
-    bucket = "vecna-buckcet1222"
+    bucket = "vecna-buckcet122672"
     tags = lookup(var.s3_configuration, "tags")
     
 }

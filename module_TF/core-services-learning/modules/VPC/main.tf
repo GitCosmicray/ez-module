@@ -1,11 +1,4 @@
-# terraform {
-#    backend "s3" {
-#     bucket = "vecna-buckcet1222"
-#     key    = "terraform/terraform.tfstate"
-#     region = "us-east-1"
-# }
 
-# }
 
 resource "aws_vpc" "VPC_useast-1" {
   cidr_block       = var.cidr_block 
