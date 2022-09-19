@@ -20,3 +20,11 @@ module "s3" {
   s3_configuration = var.s3_configuration
 }
 
+terraform {
+   backend "s3" {
+    bucket = "us-east-2-bucket1"
+    key    = "terraform/terraform.tfstate"
+    region = "us-east-1"
+}
+
+}

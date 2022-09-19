@@ -10,10 +10,20 @@ resource "aws_instance" "Ec2-UE1-lookups" {
    value = aws_instance.Ec2-UE1-lookups.public_ip
 }
 
+data "aws_secretsmanager_secret_version" "creds" {
+  secret_id = "AWSSecret_UE1_PROD"
+}
+
+locals {
+   AWSSecret_UE1_PROD= jsondecode(
+    data.aws_secretsmanager_secret_version.creds.secret_string
+  )
+}
+
 resource "aws_instance" "ec2_useast1" {
     ami           = "${lookup(var.aws_amis , var.aws_region)}"
     instance_type =  var.instance_type
     associate_public_ip_address = var.enable_public_ip
-    key_name = var.key_name1
+    key_name =local.AWSSecret_UE1_PROD.keypair
     tags = var.project_environment
 }
